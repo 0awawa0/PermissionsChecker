@@ -11,17 +11,17 @@ object PermissionsHelper {
         ),
         PermissionModel(
             "android.permission.ACCESS_COARSE_LOCATION",
-            16,
+            14,
             "Allows an app to access approximate location."
         ),
         PermissionModel(
             "android.permission.ACCESS_FINE_LOCATION",
-            18,
+            16,
             "Allows an app to access precise location."
         ),
         PermissionModel(
             "android.permission.ACCESS_MEDIA_LOCATION",
-            15,
+            12,
             "Allows an application to access any geographic locations persisted in the user's shared " +
                     "collection. That means the application with this permission can access information about " +
                     "where was made particular photos and videos stored in the phone storage."
@@ -43,12 +43,12 @@ object PermissionsHelper {
         ),
         PermissionModel(
             "com.android.voicemail.permission.ADD_VOICEMAIL",
-            11,
+            9,
             "Allows an application to add voicemails into the system."
         ),
         PermissionModel(
             "android.permission.ANSWER_PHONE_CALLS",
-            17,
+            11,
             "Allows the app to answer an incoming phone call."
         ),
         PermissionModel(
@@ -69,13 +69,13 @@ object PermissionsHelper {
         ),
         PermissionModel(
             "android.permission.CALL_PHONE",
-            14,
+            10,
             "Allows an application to initiate a phone call without going through the Dialer user interface " +
                     "for the user to confirm the call."
         ),
         PermissionModel(
             "android.permission.CAMERA",
-            18,
+            14,
             "Required to be able to access the camera device. Allows application to take photos and videos"
         ),
         PermissionModel(
@@ -137,7 +137,7 @@ object PermissionsHelper {
         ),
         PermissionModel(
             "android.permission.READ_EXTERNAL_STORAGE",
-            17,
+            13,
             "Allows an application to read from device's storage."
         ),
         PermissionModel(
@@ -178,37 +178,37 @@ object PermissionsHelper {
         ),
         PermissionModel(
             "android.permission.SEND_SMS",
-            18,
+            16,
             "Allows an application to send SMS messages."
         ),
         PermissionModel(
             "android.permission.SYSTEM_ALERT_WINDOW",
-            14,
+            12,
             "Allows application to show its windows on top of other applications."
         ),
         PermissionModel(
             "android.permission.USE_SIP",
-            16,
+            9,
             "Allows an application to use SIP service."
         ),
         PermissionModel(
             "android.permission.WRITE_CALENDAR",
-            15,
+            10,
             "Allows an application to write the user's calendar data."
         ),
         PermissionModel(
             "android.permission.WRITE_CALL_LOG",
-            15,
+            10,
             "Allows an application to write (but not read) the user's call log data."
         ),
         PermissionModel(
             "android.permission.WRITE_CONTACTS",
-            15,
+            10,
             "Allows an application to write the user's contacts data."
         ),
         PermissionModel(
             "android.permission.WRITE_EXTERNAL_STORAGE",
-            13,
+            10,
             "Allows an application to write to device's storage. "
         ),
         PermissionModel(
@@ -218,7 +218,7 @@ object PermissionsHelper {
         ),
         PermissionModel(
             "com.android.voicemail.permission.WRITE_VOICEMAIL",
-            20,
+            10,
             "Allows an application to modify and remove existing voicemails in the system."
         )
     )

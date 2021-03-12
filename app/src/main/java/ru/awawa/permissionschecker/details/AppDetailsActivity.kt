@@ -42,7 +42,11 @@ class AppDetailsActivity: AppCompatActivity() {
         val data = LinkedList<PermissionModel>()
         permissions.forEach {
             val model = PermissionsHelper.getModelForPermission(it)
-                ?: PermissionModel(it, 0, "Unknown permission")
+                ?: PermissionModel(
+                    it,
+                    0,
+                    "Permission unknown, not important or belongs to system permissions"
+                )
             data.add(model)
         }
 

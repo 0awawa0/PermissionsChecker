@@ -5,8 +5,10 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import ru.awawa.permissionschecker.helper.AppModel
 import ru.awawa.permissionschecker.R
+import ru.awawa.permissionschecker.helper.PermissionsHelper
 
 
 class AppView(context: Context, attributes: AttributeSet?): ConstraintLayout(context, attributes) {
@@ -23,6 +25,26 @@ class AppView(context: Context, attributes: AttributeSet?): ConstraintLayout(con
             id = value.id
             tvAppName.text = value.name
             tvIndex.text = value.index.toString()
+            var dangerousCount = 0
+            var sensitiveCount = 0
+            var regularCount = 0
+
+            value.permissions.forEach {
+                val weight = PermissionsHelper.getPermissionWeight(it)
+                when {
+                    weight > 15 -> dangerousCount++
+                    weight > 10 -> sensitiveCount++
+                    weight > 0 -> regularCount++
+                }
+            }
+
+            val danger = 1.5 * dangerousCount + 0.25 * sensitiveCount + 0.075 * regularCount
+            when {
+                danger > 5 -> tvIndex.setTextColor(ContextCompat.getColor(context, R.color.red_secret_data))
+                danger > 3 -> tvIndex.setTextColor(ContextCompat.getColor(context, R.color.orange_sensitive_data))
+                danger > 1 -> tvIndex.setTextColor(ContextCompat.getColor(context, R.color.green_not_secret_data))
+                else -> tvIndex.setTextColor(ContextCompat.getColor(context, R.color.blue_no_data))
+            }
         }
 
     constructor(context: Context): this(context, null)

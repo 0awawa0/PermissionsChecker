@@ -1,6 +1,7 @@
 package ru.awawa.permissionschecker.main
 
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -100,8 +101,12 @@ class MainActivity : AppCompatActivity() {
             // Get the package name
             val packageName = activityInfo.applicationInfo.packageName
 
+            val info = packageManager.getApplicationInfo(packageName, 0)
+            if (info.flags and ApplicationInfo.FLAG_SYSTEM != 0) continue
+
             // Get the application label
             val label = packageManager.getApplicationLabel(activityInfo.applicationInfo) as String
+
 
             // Put the package name and application label to hash map
             map[packageName] = label
