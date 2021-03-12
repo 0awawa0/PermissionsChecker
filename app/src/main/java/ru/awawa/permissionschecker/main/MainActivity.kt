@@ -43,6 +43,10 @@ class MainActivity : AppCompatActivity() {
                     AppDetailsActivity.EXTRA_PERMISSIONS,
                     v.model.permissions.toTypedArray()
                 )
+                intent.putExtra(
+                    AppDetailsActivity.EXTRA_DANGER_LEVEL,
+                    v.danger
+                )
                 startActivity(intent)
             }
         }

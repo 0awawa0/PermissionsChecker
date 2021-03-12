@@ -18,6 +18,9 @@ class AppView(context: Context, attributes: AttributeSet?): ConstraintLayout(con
     private val tvAppName = view.findViewById<TextView>(R.id.tvAppName)
     private val tvIndex = view.findViewById<TextView>(R.id.tvIndex)
 
+    var danger: Double = 0.0
+        private set
+
     var model: AppModel =
         AppModel(0, "", "", emptyList(), 0)
         set(value) {
@@ -38,9 +41,9 @@ class AppView(context: Context, attributes: AttributeSet?): ConstraintLayout(con
                 }
             }
 
-            val danger = 1.5 * dangerousCount + 0.25 * sensitiveCount + 0.075 * regularCount
+            danger = 1.35 * dangerousCount + 0.25 * sensitiveCount + 0.075 * regularCount
             when {
-                danger > 5 -> tvIndex.setTextColor(ContextCompat.getColor(context, R.color.red_secret_data))
+                danger > 5.5 -> tvIndex.setTextColor(ContextCompat.getColor(context, R.color.red_secret_data))
                 danger > 3 -> tvIndex.setTextColor(ContextCompat.getColor(context, R.color.orange_sensitive_data))
                 danger > 1 -> tvIndex.setTextColor(ContextCompat.getColor(context, R.color.green_not_secret_data))
                 else -> tvIndex.setTextColor(ContextCompat.getColor(context, R.color.blue_no_data))
