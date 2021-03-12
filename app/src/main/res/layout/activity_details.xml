@@ -37,15 +37,17 @@
         android:text="100"
         app:layout_constraintLeft_toLeftOf="@id/tvPackageName"
         app:layout_constraintRight_toRightOf="@id/tvPackageName"
-        app:layout_constraintTop_toBottomOf="@id/tvPackageName"/>
+        app:layout_constraintTop_toBottomOf="@id/tvPackageName"
+        app:layout_constraintBottom_toTopOf="@id/rvPermissions"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPermissions"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvIndex"/>
+        app:layout_constraintTop_toBottomOf="@id/tvIndex"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
