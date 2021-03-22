@@ -36,16 +36,16 @@ class MainActivity : AppCompatActivity() {
                     v.model.packageName
                 )
                 intent.putExtra(
-                    AppDetailsActivity.EXTRA_INDEX,
-                    v.model.index
+                    AppDetailsActivity.EXTRA_INDEX1,
+                    v.model.index1
+                )
+                intent.putExtra(
+                    AppDetailsActivity.EXTRA_INDEX2,
+                    v.model.index2
                 )
                 intent.putExtra(
                     AppDetailsActivity.EXTRA_PERMISSIONS,
                     v.model.permissions.toTypedArray()
-                )
-                intent.putExtra(
-                    AppDetailsActivity.EXTRA_DANGER_LEVEL,
-                    v.danger
                 )
                 startActivity(intent)
             }
@@ -70,12 +70,13 @@ class MainActivity : AppCompatActivity() {
             val permissions = getPermissionForPackage(it.key)
             val index = calculateIndexForPermissions(permissions)
             val appModel =
-                AppModel(id, it.value, it.key, permissions, index)
+                AppModel(id, it.value, it.key, permissions, index.first, index.second)
             id++
             data.add(appModel)
         }
 
-        data.sortByDescending { it.index }
+
+        data.sortByDescending { it.index1 }
         adapter.dataList = data
     }
 
@@ -131,6 +132,8 @@ class MainActivity : AppCompatActivity() {
             // Permissions counter
             var counter = 1
 
+            if (packageInfo.requestedPermissions == null) return emptyList()
+
             // Loop through the package info requested permissions
             for (i in packageInfo.requestedPermissions.indices) {
                 if (packageInfo.requestedPermissionsFlags[i] and PackageInfo.REQUESTED_PERMISSION_GRANTED != 0) {
@@ -146,11 +149,23 @@ class MainActivity : AppCompatActivity() {
         return result.toList()
     }
 
-    private fun calculateIndexForPermissions(permissions: List<String>): Int {
-        var result = 0
+    private fun calculateIndexForPermissions(permissions: List<String>): Pair<Int, Float> {
+        var dangerousCount = 0
+        var sensitiveCount = 0
+        var regularCount = 0
+
+        var index1 = 0
         for (p in permissions) {
-            result += PermissionsHelper.getPermissionWeight(p)
+            val weight = PermissionsHelper.getPermissionWeight(p)
+            when {
+                weight > 15 -> dangerousCount++
+                weight > 10 -> sensitiveCount++
+                weight > 0 -> regularCount++
+            }
+            index1 += weight
         }
-        return result
+
+        val index2 = 1.35f * dangerousCount + 0.25f * sensitiveCount + 0.075f * regularCount
+        return Pair(index1, index2)
     }
 }

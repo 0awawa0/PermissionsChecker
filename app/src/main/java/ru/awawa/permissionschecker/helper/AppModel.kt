@@ -6,5 +6,6 @@ data class AppModel(
     val name: String,
     val packageName: String,
     val permissions: List<String>,
-    val index: Int
+    val index1: Int,
+    val index2: Float
 )
