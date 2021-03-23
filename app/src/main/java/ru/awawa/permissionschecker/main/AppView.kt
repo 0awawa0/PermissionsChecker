@@ -8,7 +8,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import ru.awawa.permissionschecker.helper.AppModel
 import ru.awawa.permissionschecker.R
-import ru.awawa.permissionschecker.helper.PermissionsHelper
 
 
 class AppView(context: Context, attributes: AttributeSet?): ConstraintLayout(context, attributes) {
@@ -34,10 +33,6 @@ class AppView(context: Context, attributes: AttributeSet?): ConstraintLayout(con
         }
 
     constructor(context: Context): this(context, null)
-
-    constructor(context: Context, model: AppModel): this(context) {
-        this.model = model
-    }
 
     init {
         this.addView(view)
